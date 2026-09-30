@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../core/messages.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,9 +9,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ZIRAN - MENU'),
+        title: const Text(Messages.appName, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.red.shade900,
+        centerTitle: true,
         actions: [
-          IconButton(icon: const Icon(Icons.logout), onPressed: () => context.go('/')),
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            onPressed: () => context.go('/'),
+          ),
         ],
       ),
       body: LayoutBuilder(
@@ -23,25 +29,25 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Olá, Colaborador",
-                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    const Text("Selecione uma operação abaixo:"),
+                    Text(Messages.tr('home_welcome'),
+                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                    Text(Messages.tr('home_subtitle')),
                     const SizedBox(height: 24),
 
                     _MenuCard(
-                      title: "LER QR CODE",
-                      subtitle: "Identificar ponto",
+                      title: Messages.tr('home_btn_scan'),
+                      subtitle: Messages.tr('home_sub_scan'),
                       icon: Icons.qr_code_scanner,
-                      color: Colors.blueGrey.shade900,
+                      color: Colors.red.shade900,
                       onTap: () => context.push('/scan'),
                     ),
                     const SizedBox(height: 16),
 
                     _MenuCard(
-                      title: "FILA DE SEPARAÇÃO",
-                      subtitle: "Ver pedidos",
+                      title: Messages.tr('home_btn_fila'),
+                      subtitle: Messages.tr('home_sub_fila'),
                       icon: Icons.assignment_outlined,
-                      color: Colors.blueGrey.shade600,
+                      color: Colors.red.shade900,
                       onTap: () => context.push('/fila'),
                     ),
 
@@ -52,7 +58,7 @@ class HomePage extends StatelessWidget {
                       child: OutlinedButton.icon(
                         onPressed: () => context.push('/dashboard'),
                         icon: const Icon(Icons.dashboard),
-                        label: const Text("DASHBOARD GERAL"),
+                        label: Text(Messages.tr('home_btn_dashboard')),
                         style: OutlinedButton.styleFrom(padding: const EdgeInsets.all(16)),
                       ),
                     ),

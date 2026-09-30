@@ -12,10 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Ziran Web - Consumíveis',
+      title: 'Ziran Web',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red.shade900,
+          primary: Colors.red.shade900,
+        ),
         useMaterial3: true,
       ),
       routerConfig: appRouter,

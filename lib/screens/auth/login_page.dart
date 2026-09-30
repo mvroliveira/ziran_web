@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../core/messages.dart';
+import '../../core/web_assets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -27,31 +29,46 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.inventory_2_outlined,
-                      size: screenWidth < 360 ? 60 : 80,
-                      color: Colors.blueGrey),
-                  const SizedBox(height: 16),
-                  const Text(
-                    "ZIRAN WEB",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, letterSpacing: 2),
+                  Image.asset(
+                    WebAssets.logo,
+                    width: screenWidth < 360 ? 180 : 240,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    Messages.appName,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                      color: Colors.blueGrey,
+                    ),
                   ),
                   const SizedBox(height: 40),
 
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Matrícula',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.person),
+                    decoration: InputDecoration(
+                      labelText: Messages.tr('label_matricula'),
+                      labelStyle: TextStyle(color: Colors.red.shade900),
+                      border: const OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.person, color: Colors.red.shade900),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red.shade900, width: 2),
+                      ),
                     ),
                     keyboardType: TextInputType.number,
                   ),
                   const SizedBox(height: 16),
 
                   TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'PIN de Acesso',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.lock),
+                    decoration: InputDecoration(
+                      labelText: Messages.tr('label_pin'),
+                      labelStyle: TextStyle(color: Colors.red.shade900),
+                      border: const OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.lock, color: Colors.red.shade900),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red.shade900, width: 2),
+                      ),
                     ),
                     obscureText: true,
                     keyboardType: TextInputType.number,
@@ -64,11 +81,15 @@ class _LoginPageState extends State<LoginPage> {
                     child: ElevatedButton(
                       onPressed: _isLoading ? null : () => context.go('/home'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey.shade900,
+                        backgroundColor: Colors.red.shade900,
                         foregroundColor: Colors.white,
+                        elevation: 2,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
-                      child: const Text('ENTRAR', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      child: Text(
+                        Messages.tr('button_login'),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ],
